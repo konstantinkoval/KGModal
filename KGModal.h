@@ -13,7 +13,13 @@ typedef NS_ENUM(NSUInteger, KGModalBackgroundDisplayStyle){
     KGModalBackgroundDisplayStyleSolid
 };
 
+typedef void(^KGModalHideCallback)();
+
+
 @interface KGModal : NSObject
+
+//clock that will be called when ModalView is hidden.
+@property (nonatomic, copy) KGModalHideCallback finishCallback;
 
 // Determines if the modal should dismiss if the user taps outside of the modal view
 // Defaults to YES

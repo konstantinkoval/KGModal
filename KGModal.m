@@ -187,6 +187,9 @@ NSString *const KGModalGradientViewTapped = @"KGModalGradientViewTapped";
                 self.containerView.alpha = 0;
                 self.containerView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.4, 0.4);
             } completion:^(BOOL finished2){
+                if (self.finishCallback) {
+                    self.finishCallback();
+                }
                 [self cleanup];
                 if(completion){
                     completion();
@@ -203,6 +206,7 @@ NSString *const KGModalGradientViewTapped = @"KGModalGradientViewTapped";
     [self.window removeFromSuperview];
     self.contentViewController = nil;    
     self.window = nil;
+    self.finishCallback = nil;
 }
 
 - (void)setModalBackgroundColor:(UIColor *)modalBackgroundColor{
